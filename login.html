@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Log in — SecureAI</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="login">
+
+  <!-- ═══════════ HEADER ═══════════ -->
+  <div class="topbar"></div>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-box">&gt;_</span>
+        <span class="logo-text">SecureAI</span>
+      </a>
+      <a href="signup.html" class="btn btn-secondary">Create account</a>
+    </div>
+  </header>
+
+  <!-- ═══════════ LOGIN ═══════════ -->
+  <main class="auth-main bg-dots">
+    <div class="auth-wrap">
+      <div class="card auth-card">
+        <div class="auth-head">
+          <span class="highlight-box">🔐 Welcome back</span>
+          <h1>Log in to SecureAI</h1>
+          <p>Pick up where you left off and keep your codebase secure.</p>
+        </div>
+
+        <div class="auth-hint">
+          <strong>Demo login</strong>
+          <span>ID: <code>demo@secureai.com</code> &nbsp;·&nbsp; Password: <code>Demo@123</code></span>
+        </div>
+
+        <form id="loginForm" class="auth-form" novalidate>
+          <div class="form-row">
+            <label for="loginEmail">Email address</label>
+            <input type="email" id="loginEmail" name="email" placeholder="demo@secureai.com" autocomplete="email" />
+            <span class="field-error">Enter a valid email address</span>
+          </div>
+
+          <div class="form-row">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" name="password" placeholder="Demo@123" autocomplete="current-password" />
+            <span class="field-error">Password must be at least 6 characters</span>
+          </div>
+
+          <p id="loginFormError" class="field-error form-banner-error">Invalid email or password. Use the demo credentials above.</p>
+
+          <div class="auth-row-between">
+            <label class="auth-checkbox">
+              <input type="checkbox" id="loginRemember" />
+              Remember me
+            </label>
+            <a href="#">Forgot password?</a>
+          </div>
+
+          <button type="submit" id="loginSubmit" class="btn btn-primary btn-lg btn-block">Log in →</button>
+        </form>
+
+        <div class="auth-divider">or continue with</div>
+
+        <div class="auth-social">
+          <a href="#" class="btn btn-secondary btn-block">🐙 Continue with GitHub</a>
+          <a href="#" class="btn btn-secondary btn-block">🔎 Continue with Google</a>
+        </div>
+
+        <p class="auth-footer-text">Don't have an account? <a href="signup.html">Sign up for free</a></p>
+      </div>
+    </div>
+  </main>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© 2026 SecureAI. Your code is never stored.</span>
+    </div>
+  </footer>
+
+  <script src="demo.js"></script>
+</body>
+</html>

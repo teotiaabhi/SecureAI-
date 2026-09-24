@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Results — SecureAI</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="results">
+  <div class="topbar"></div>
+  <header class="header app-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-box">&gt;_</span>
+        <span class="logo-text">SecureAI</span>
+      </a>
+      <nav class="app-nav">
+        <a href="dashboard.html">📊 Dashboard</a>
+        <a href="scan.html">🔍 Scan</a>
+        <a href="results.html" class="active">🛡 Results</a>
+        <a href="history.html">🕓 History</a>
+        <a href="cicd.html">🔀 CI/CD</a>
+        <a href="compliance.html">📘 Compliance</a>
+        <a href="admin.html">🧑‍💼 Admin</a>
+      </nav>
+      <a href="index.html" class="btn btn-secondary">Log out</a>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <div class="page-eyebrow">
+      <span class="highlight-box">🛡 Results</span>
+    </div>
+    <h1 class="page-title">Security Report</h1>
+    <p class="page-sub">Latest findings across the scanned codebase</p>
+
+    <div class="stats-grid" style="margin-top:24px;">
+      <div class="card stat-card">
+        <div class="stat-icon">📊</div>
+        <p class="stat-value" id="result-score">78</p>
+        <p class="stat-label">Security Score</p>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-icon">🚨</div>
+        <p class="stat-value" id="result-findings">12</p>
+        <p class="stat-label">Total Findings</p>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-icon">🔥</div>
+        <p class="stat-value" id="result-critical">3</p>
+        <p class="stat-label">Critical</p>
+      </div>
+      <div class="card-accent stat-card">
+        <div class="stat-icon">✅</div>
+        <p class="stat-value" id="result-grade">B</p>
+        <p class="stat-label">Final Grade</p>
+      </div>
+    </div>
+
+    <div class="dash-grid">
+      <div class="card" style="padding:24px;">
+        <h3 class="panel-title">Vulnerability Summary</h3>
+        <div id="results-summary" class="summary-list"></div>
+      </div>
+
+      <div class="card" style="padding:24px;">
+        <h3 class="panel-title">Risk Distribution</h3>
+        <div class="chart-placeholder" style="gap:12px;">
+          <div class="chart-bar" style="height:80%; background:#dc2626;"></div>
+          <div class="chart-bar" style="height:66%; background:#ea580c;"></div>
+          <div class="chart-bar" style="height:45%; background:#d97706;"></div>
+          <div class="chart-bar" style="height:24%; background:#2563eb;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="padding:24px; margin-top:24px;">
+      <h3 class="panel-title">Findings Table</h3>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>File</th>
+              <th>Issue</th>
+              <th>Severity</th>
+              <th>Fix</th>
+            </tr>
+          </thead>
+          <tbody id="results-table-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script src="demo.js"></script>
+</body>
+</html>

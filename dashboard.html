@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — SecureAI</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="dashboard">
+
+  <!-- ═══════════ APP HEADER ═══════════ -->
+  <div class="topbar"></div>
+  <header class="header app-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-box">&gt;_</span>
+        <span class="logo-text">SecureAI</span>
+      </a>
+      <nav class="app-nav">
+        <a href="dashboard.html" class="active">📊 Dashboard</a>
+        <a href="scan.html">🔍 Scan</a>
+        <a href="results.html">🛡 Results</a>
+        <a href="history.html">🕓 History</a>
+        <a href="cicd.html">🔀 CI/CD</a>
+        <a href="compliance.html">📘 Compliance</a>
+        <a href="admin.html">🧑‍💼 Admin</a>
+      </nav>
+      <a href="index.html" class="btn btn-secondary">Log out</a>
+    </div>
+  </header>
+
+  <!-- ═══════════ MAIN ═══════════ -->
+  <main class="app-main">
+    <div class="page-eyebrow">
+      <span class="highlight-box">⚡ Dashboard</span>
+    </div>
+    <h1 class="page-title">Security Overview</h1>
+    <p class="page-sub">Monitor and improve your codebase security posture</p>
+
+    <!-- Quick Stats -->
+    <div class="stats-grid">
+      <div class="card stat-card">
+        <div class="stat-icon">🛡️</div>
+        <p class="stat-value" id="avg-score-value">82</p>
+        <p class="stat-label">Average Score</p>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-icon">🐞</div>
+        <p class="stat-value" id="total-vuln-value">17</p>
+        <p class="stat-label">Total Vulnerabilities</p>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-icon">📈</div>
+        <p class="stat-value" id="scan-count-value">6</p>
+        <p class="stat-label">Scans Completed</p>
+      </div>
+      <div class="card-accent stat-card">
+        <div class="stat-icon">📊</div>
+        <p class="stat-value" id="latest-grade-value">B</p>
+        <p class="stat-label">Latest Grade</p>
+      </div>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="dash-grid">
+      <!-- Score Trend -->
+      <div class="card" style="padding:24px;">
+        <h3 class="panel-title">📈 Security Score Trend</h3>
+        <div class="chart-placeholder">
+          <div class="chart-bar" style="height:40%;"></div>
+          <div class="chart-bar" style="height:55%;"></div>
+          <div class="chart-bar" style="height:50%;"></div>
+          <div class="chart-bar" style="height:70%;"></div>
+          <div class="chart-bar" style="height:65%;"></div>
+          <div class="chart-bar" style="height:82%;"></div>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div style="display:flex; flex-direction:column; gap:16px;">
+        <div class="card" style="padding:20px;">
+          <h3 class="panel-title">Quick Actions</h3>
+          <div class="quick-actions">
+            <a href="scan.html" class="quick-action accent">
+              <div class="quick-action-icon">🔍</div>
+              <div>
+                <p class="quick-action-title">New Scan</p>
+                <p class="quick-action-desc">Upload code or connect repo</p>
+              </div>
+            </a>
+            <a href="results.html" class="quick-action">
+              <div class="quick-action-icon">🛡️</div>
+              <div>
+                <p class="quick-action-title">View Results</p>
+                <p class="quick-action-desc">Latest scan analysis</p>
+              </div>
+            </a>
+            <a href="history.html" class="quick-action">
+              <div class="quick-action-icon">🕓</div>
+              <div>
+                <p class="quick-action-title">Scan History</p>
+                <p class="quick-action-desc">Compare past scans</p>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Latest Scan -->
+        <div class="card" style="padding:20px;">
+          <h3 class="panel-title">Latest Scan</h3>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="width:44px;height:44px;border-radius:var(--radius-md);border:1.5px solid var(--border-primary);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;color:var(--grade-b, #65A30D);background:var(--bg-secondary);">B</div>
+            <div style="flex:1;">
+              <p style="font-size:14px;font-weight:600;margin:0;">secureai/frontend</p>
+              <span style="font-size:11px;color:var(--text-tertiary);">🕓 Sep 12, 2026</span>
+            </div>
+            <div style="display:flex;gap:4px;">
+              <span class="badge-high">2</span>
+              <span class="badge-medium">4</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Usage -->
+        <div class="card" style="padding:20px;">
+          <h3 class="panel-title">Usage Overview</h3>
+          <p style="font-size:12px;color:var(--text-secondary);margin:0 0 4px;">Scans today: 6 / 50</p>
+          <div class="usage-bar-track"><div class="usage-bar-fill" style="width:12%;"></div></div>
+          <p style="font-size:12px;color:var(--text-secondary);margin:12px 0 4px;">AI tokens used: 42,000 / 100,000</p>
+          <div class="usage-bar-track"><div class="usage-bar-fill" style="width:42%;"></div></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="demo.js"></script>
+</body>
+</html>

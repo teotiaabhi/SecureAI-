@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>History — SecureAI</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="history">
+  <div class="topbar"></div>
+  <header class="header app-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-box">&gt;_</span>
+        <span class="logo-text">SecureAI</span>
+      </a>
+      <nav class="app-nav">
+        <a href="dashboard.html">📊 Dashboard</a>
+        <a href="scan.html">🔍 Scan</a>
+        <a href="results.html">🛡 Results</a>
+        <a href="history.html" class="active">🕓 History</a>
+        <a href="cicd.html">🔀 CI/CD</a>
+        <a href="compliance.html">📘 Compliance</a>
+        <a href="admin.html">🧑‍💼 Admin</a>
+      </nav>
+      <a href="index.html" class="btn btn-secondary">Log out</a>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <div class="page-eyebrow">
+      <span class="highlight-box">🕓 Scan History</span>
+    </div>
+    <h1 class="page-title">Recent Security Activity</h1>
+    <p class="page-sub">Track trends and compare vulnerabilities over time</p>
+
+    <div id="history-list" class="history-list" style="margin-top:24px;"></div>
+  </main>
+
+  <script src="demo.js"></script>
+</body>
+</html>

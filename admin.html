@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — SecureAI</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="admin">
+  <div class="topbar"></div>
+  <header class="header app-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-box">&gt;_</span>
+        <span class="logo-text">SecureAI</span>
+      </a>
+      <nav class="app-nav">
+        <a href="dashboard.html">📊 Dashboard</a>
+        <a href="scan.html">🔍 Scan</a>
+        <a href="results.html">🛡 Results</a>
+        <a href="history.html">🕓 History</a>
+        <a href="cicd.html">🔀 CI/CD</a>
+        <a href="compliance.html">📘 Compliance</a>
+        <a href="admin.html" class="active">🧑‍💼 Admin</a>
+      </nav>
+      <a href="index.html" class="btn btn-secondary">Log out</a>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <div class="page-eyebrow">
+      <span class="highlight-box">🧑‍💼 Admin</span>
+    </div>
+    <h1 class="page-title">Platform Administration</h1>
+    <p class="page-sub">Manage users, billing, and security policy controls</p>
+
+    <div class="stats-grid" style="margin-top:24px;">
+      <div class="card stat-card">
+        <div class="stat-icon">👥</div>
+        <p class="stat-value">148</p>
+        <p class="stat-label">Total Users</p>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-icon">💳</div>
+        <p class="stat-value">$4.2k</p>
+        <p class="stat-label">Monthly Revenue</p>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-icon">🛡️</div>
+        <p class="stat-value">99.9%</p>
+        <p class="stat-label">Uptime</p>
+      </div>
+      <div class="card-accent stat-card">
+        <div class="stat-icon">🔑</div>
+        <p class="stat-value">7</p>
+        <p class="stat-label">Active Roles</p>
+      </div>
+    </div>
+
+    <div class="card" style="padding:24px;">
+      <h3 class="panel-title">Users</h3>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Role</th>
+              <th>Status</th>
+              <th>Team</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Maria Khan</td>
+              <td>Admin</td>
+              <td><span class="status-pill success">Active</span></td>
+              <td>Security</td>
+            </tr>
+            <tr>
+              <td>Ali Hassan</td>
+              <td>Auditor</td>
+              <td><span class="status-pill success">Active</span></td>
+              <td>Compliance</td>
+            </tr>
+            <tr>
+              <td>Yasmin Qureshi</td>
+              <td>Developer</td>
+              <td><span class="status-pill warn">Pending</span></td>
+              <td>Platform</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+  <script src="demo.js"></script>
+</body>
+</html>

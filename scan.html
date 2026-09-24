@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scan — SecureAI</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="scan">
+
+  <!-- ═══════════ APP HEADER ═══════════ -->
+  <div class="topbar"></div>
+  <header class="header app-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-box">&gt;_</span>
+        <span class="logo-text">SecureAI</span>
+      </a>
+      <nav class="app-nav">
+        <a href="dashboard.html">📊 Dashboard</a>
+        <a href="scan.html" class="active">🔍 Scan</a>
+        <a href="results.html">🛡 Results</a>
+        <a href="history.html">🕓 History</a>
+        <a href="cicd.html">🔀 CI/CD</a>
+        <a href="compliance.html">📘 Compliance</a>
+        <a href="admin.html">🧑‍💼 Admin</a>
+      </nav>
+      <a href="index.html" class="btn btn-secondary">Log out</a>
+    </div>
+  </header>
+
+  <!-- ═══════════ MAIN ═══════════ -->
+  <main class="app-main">
+    <div class="page-eyebrow">
+      <span class="highlight-box">🔍 New Scan</span>
+    </div>
+    <h1 class="page-title">Security Scan</h1>
+    <p class="page-sub">Upload your code or connect a repository to begin AI-powered security analysis.</p>
+
+    <div class="dash-grid" style="margin-top:24px;">
+      <!-- Input Section -->
+      <div class="card" style="overflow:hidden;">
+        <div class="tabs">
+          <button class="tab active" data-tab="paste">💻 Paste Code</button>
+          <button class="tab" data-tab="single">📄 Upload File</button>
+          <button class="tab" data-tab="multiple">🗂 Multiple Files</button>
+          <button class="tab" data-tab="zip">🗜 Upload ZIP</button>
+          <button class="tab" data-tab="github">🐙 GitHub Repo</button>
+        </div>
+
+        <div class="tab-panel" id="panel-paste">
+          <div class="form-row">
+            <label>Language</label>
+            <select>
+              <option>TypeScript</option>
+              <option>JavaScript</option>
+              <option>Python</option>
+              <option>PHP</option>
+            </select>
+          </div>
+          <textarea class="code-textarea" placeholder="// Paste your code here...">function login(user, pass) {
+  const query = "SELECT * FROM users WHERE user='" + user + "'";
+  return db.execute(query);
+}</textarea>
+        </div>
+
+        <div class="tab-panel hidden" id="panel-single">
+          <div class="dropzone">
+            <div class="dropzone-icon">📄</div>
+            <p style="font-weight:600;color:var(--text-primary);">Drag & drop a file here</p>
+            <p style="font-size:12px;">or click to browse</p>
+          </div>
+        </div>
+
+        <div class="tab-panel hidden" id="panel-multiple">
+          <div class="dropzone">
+            <div class="dropzone-icon">🗂</div>
+            <p style="font-weight:600;color:var(--text-primary);">Drag & drop multiple files</p>
+            <p style="font-size:12px;">or click to browse</p>
+          </div>
+        </div>
+
+        <div class="tab-panel hidden" id="panel-zip">
+          <div class="dropzone">
+            <div class="dropzone-icon">🗜</div>
+            <p style="font-weight:600;color:var(--text-primary);">Drag & drop a .zip archive</p>
+            <p style="font-size:12px;">or click to browse</p>
+          </div>
+        </div>
+
+        <div class="tab-panel hidden" id="panel-github">
+          <div class="dropzone">
+            <div class="dropzone-icon">🐙</div>
+            <p style="font-weight:600;color:var(--text-primary);">Connect a GitHub Repository</p>
+            <p style="font-size:12px;margin-bottom:16px;">Select a repository from your GitHub account</p>
+            <a href="#" class="btn btn-dark">🐙 Select Repository</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Config Panel + Usage -->
+      <div style="display:flex; flex-direction:column; gap:16px;">
+        <div class="card" style="padding:20px;">
+          <h3 class="panel-title">Scan Configuration</h3>
+          <div class="checkbox-row"><input type="checkbox" checked /> Deep AI reasoning</div>
+          <div class="checkbox-row"><input type="checkbox" checked /> Rule engine detection</div>
+          <div class="checkbox-row"><input type="checkbox" /> Include dependency scan</div>
+          <div class="form-row">
+            <label>Scan depth</label>
+            <select>
+              <option>Quick</option>
+              <option selected>Deep</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="card" style="padding:20px;">
+          <h3 class="panel-title">Usage</h3>
+          <p style="font-size:12px;color:var(--text-secondary);margin:0 0 4px;">Scans: 6 / 50</p>
+          <div class="usage-bar-track"><div class="usage-bar-fill" style="width:12%;"></div></div>
+        </div>
+
+        <button id="startScanBtn" class="btn btn-primary btn-lg" style="width:100%;">
+          ▶ Start Security Scan →
+        </button>
+        <p id="scanStatus" style="font-size:12px; color:var(--text-tertiary); margin:10px 0 0; text-align:center; min-height:18px;"></p>
+      </div>
+    </div>
+  </main>
+
+  <script src="demo.js"></script>
+</body>
+</html>
