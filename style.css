@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
 
-/* ═══════════════════════════════════════════════════════════════
-   SecureAI Design System — Warm Yellow + Boxed + Minimal
-   (Plain HTML/CSS version of the hero page + a few components)
-   ═══════════════════════════════════════════════════════════════ */
 
 :root {
   --brand-primary: #F5C842;
@@ -823,6 +819,47 @@ body {
   padding: 40px 24px;
   text-align: center;
   color: var(--text-tertiary);
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease;
+}
+
+.dropzone:hover,
+.dropzone:focus-within {
+  border-color: var(--brand-primary-dark);
+  background: var(--brand-primary-light);
+}
+
+.file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.file-selected {
+  margin: 12px 0 0;
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.scan-source-details {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 16px;
+  padding: 16px 20px;
+  margin-top: 20px;
+  border-left: 4px solid var(--brand-primary);
+}
+
+.scan-source-details strong {
+  font-size: 13px;
+}
+
+.scan-source-details span {
+  color: var(--text-secondary);
+  font-size: 13px;
 }
 
 .dropzone-icon {
