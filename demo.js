@@ -22,6 +22,53 @@ const demoResults = {
   ],
 };
 
+const scanSourceKey = 'secureai-scan-source';
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>'"]/g, (character) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;',
+  }[character]));
+}
+
+function formatFileSize(bytes) {
+  if (bytes < 1024) return `${bytes} B`;
+  return `${(bytes / 1024).toFixed(1)} KB`;
+}
+
+function getStoredScanSource() {
+  try {
+    return JSON.parse(localStorage.getItem(scanSourceKey) || 'null');
+  } catch (error) {
+    return null;
+  }
+}
+
+function createUploadReport(source) {
+  if (!source) return demoResults;
+
+  const displayName = source.count > 1 ? `${source.name} and ${source.count - 1} more files` : source.name;
+  return {
+    ...demoResults,
+    score: 84,
+    findings: source.count > 1 ? 7 : 4,
+    critical: 1,
+    grade: 'B+',
+    source,
+    summary: [
+      { label: 'Hardcoded secret pattern', level: 'critical' },
+      { label: 'Unsafe input handling', level: 'high' },
+      { label: 'Missing security headers', level: 'medium' },
+      { label: 'Dependency review recommended', level: 'low' },
+    ],
+    findingsTable: [
+      { file: displayName, issue: 'Hardcoded secret pattern', severity: 'critical', fix: 'Move secrets to environment variables' },
+      { file: displayName, issue: 'Unsafe input handling', severity: 'high', fix: 'Validate and sanitize user input' },
+      { file: displayName, issue: 'Missing security headers', severity: 'medium', fix: 'Add a secure headers policy' },
+      { file: displayName, issue: 'Dependency review recommended', severity: 'low', fix: 'Review and update dependencies' },
+    ],
+  };
+}
+
 function badgeFor(level) {
   const map = {
     critical: 'badge-critical',
@@ -38,19 +85,31 @@ function renderResultsPage() {
 
   if (!summaryRoot || !tableBody) return;
 
-  document.getElementById('result-score').textContent = demoResults.score;
-  document.getElementById('result-findings').textContent = demoResults.findings;
-  document.getElementById('result-critical').textContent = demoResults.critical;
-  document.getElementById('result-grade').textContent = demoResults.grade;
+  const report = createUploadReport(getStoredScanSource());
 
-  summaryRoot.innerHTML = demoResults.summary.map((item) => `
+  document.getElementById('result-score').textContent = report.score;
+  document.getElementById('result-findings').textContent = report.findings;
+  document.getElementById('result-critical').textContent = report.critical;
+  document.getElementById('result-grade').textContent = report.grade;
+
+  const sourceDetails = document.getElementById('scan-source-details');
+  if (sourceDetails && report.source) {
+    sourceDetails.hidden = false;
+    sourceDetails.innerHTML = `
+      <strong>Uploaded source</strong><span>${escapeHtml(report.source.name)}</span>
+      <strong>Scan type</strong><span>${escapeHtml(report.source.kind)} • ${report.source.count} file${report.source.count === 1 ? '' : 's'} • ${formatFileSize(report.source.size)}</span>
+      <strong>Report note</strong><span>Static demo analysis generated from the uploaded file metadata.</span>
+    `;
+  }
+
+  summaryRoot.innerHTML = report.summary.map((item) => `
     <div class="summary-row">
       <span>${item.label}</span>
       <span class="${badgeFor(item.level)}">${item.level.charAt(0).toUpperCase() + item.level.slice(1)}</span>
     </div>
   `).join('');
 
-  tableBody.innerHTML = demoResults.findingsTable.map((row) => `
+  tableBody.innerHTML = report.findingsTable.map((row) => `
     <tr>
       <td>${row.file}</td>
       <td>${row.issue}</td>
@@ -112,12 +171,42 @@ function bindTabs() {
   });
 }
 
+function bindUploadInputs() {
+  document.querySelectorAll('.dropzone .file-input').forEach((input) => {
+    input.addEventListener('change', () => {
+      const files = Array.from(input.files || []);
+      const zone = input.closest('.dropzone');
+      const selected = zone?.querySelector('.file-selected');
+      const prompt = zone?.querySelector('.file-prompt');
+      if (!files.length || !selected) return;
+
+      const firstFile = files[0];
+      selected.textContent = files.length > 1
+        ? `${files.length} files selected (${firstFile.name} + ${files.length - 1} more)`
+        : `${firstFile.name} • ${formatFileSize(firstFile.size)}`;
+      if (prompt) prompt.textContent = 'File selected. Click to change';
+
+      localStorage.setItem(scanSourceKey, JSON.stringify({
+        name: firstFile.name,
+        size: files.reduce((total, file) => total + file.size, 0),
+        count: files.length,
+        kind: input.id.replace('FileInput', '').replace(/^./, (letter) => letter.toUpperCase()),
+      }));
+    });
+  });
+}
+
 function bindScanButton() {
   const btn = document.getElementById('startScanBtn');
   const status = document.getElementById('scanStatus');
   if (!btn || !status) return;
 
   btn.addEventListener('click', () => {
+    const activeTab = document.querySelector('.tab.active')?.dataset.tab;
+    if (!['single', 'multiple', 'zip'].includes(activeTab)) {
+      localStorage.removeItem(scanSourceKey);
+    }
+
     btn.disabled = true;
     btn.textContent = 'Scanning...';
     status.textContent = 'Running demo analysis...';
@@ -144,6 +233,7 @@ if (document.body.dataset.page === 'history') {
 
 if (document.body.dataset.page === 'scan') {
   bindTabs();
+  bindUploadInputs();
   bindScanButton();
 }
 
