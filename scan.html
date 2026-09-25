@@ -65,27 +65,33 @@
         </div>
 
         <div class="tab-panel hidden" id="panel-single">
-          <div class="dropzone">
+          <label class="dropzone" for="singleFileInput">
+            <input id="singleFileInput" class="file-input" type="file" accept=".js,.jsx,.ts,.tsx,.py,.php,.java,.go,.rb,.html,.css,.json,.yml,.yaml" />
             <div class="dropzone-icon">📄</div>
             <p style="font-weight:600;color:var(--text-primary);">Drag & drop a file here</p>
-            <p style="font-size:12px;">or click to browse</p>
-          </div>
+            <p class="file-prompt" style="font-size:12px;">or click to browse</p>
+            <p class="file-selected" aria-live="polite"></p>
+          </label>
         </div>
 
         <div class="tab-panel hidden" id="panel-multiple">
-          <div class="dropzone">
+          <label class="dropzone" for="multipleFileInput">
+            <input id="multipleFileInput" class="file-input" type="file" multiple accept=".js,.jsx,.ts,.tsx,.py,.php,.java,.go,.rb,.html,.css,.json,.yml,.yaml" />
             <div class="dropzone-icon">🗂</div>
             <p style="font-weight:600;color:var(--text-primary);">Drag & drop multiple files</p>
-            <p style="font-size:12px;">or click to browse</p>
-          </div>
+            <p class="file-prompt" style="font-size:12px;">or click to browse</p>
+            <p class="file-selected" aria-live="polite"></p>
+          </label>
         </div>
 
         <div class="tab-panel hidden" id="panel-zip">
-          <div class="dropzone">
+          <label class="dropzone" for="zipFileInput">
+            <input id="zipFileInput" class="file-input" type="file" accept=".zip" />
             <div class="dropzone-icon">🗜</div>
             <p style="font-weight:600;color:var(--text-primary);">Drag & drop a .zip archive</p>
-            <p style="font-size:12px;">or click to browse</p>
-          </div>
+            <p class="file-prompt" style="font-size:12px;">or click to browse</p>
+            <p class="file-selected" aria-live="polite"></p>
+          </label>
         </div>
 
         <div class="tab-panel hidden" id="panel-github">
